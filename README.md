@@ -1,5 +1,5 @@
 # PolyalphaCipher
-PolyalphaCipher is a command line application that either decrypts or encrypts a given text file depending on what the user chooses.
+PolyalphaCipher is a command line application that either decrypts or encrypts a given text file by using a PolyAlpha Cipher.  Not only will the generated text be shown in the application, but it will also be outputed to a text file.
 
 ## Requirements to run
 
