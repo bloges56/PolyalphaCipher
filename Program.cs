@@ -39,13 +39,31 @@ namespace PolyalphaCipher
 
             Console.WriteLine("1)Encrypt\n2)Decrypt");
 
-            int choice = Int32.Parse(Console.ReadLine());
+            int choice;
+            try
+            {
+                choice = Int32.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid choice.");
+                return;
+
+            }
             string plainText, cipherText, file;
             if(choice == 1)
             {
                 Console.WriteLine("Enter the path of the text file you wish to encrypt:");
                 file = Console.ReadLine();
-                plainText = System.IO.File.ReadAllText(file).ToLower();
+                try
+                {
+                    plainText = System.IO.File.ReadAllText(file).ToLower();
+                }
+                catch
+                {
+                    Console.WriteLine("Not a valid file.");
+                    return;
+                }
                 cipherText = Encrypt(plainText, M2, 1);
                 Console.WriteLine("Ciphertext: " + cipherText);
                 System.IO.File.WriteAllTextAsync("cipherTextOut.txt", cipherText);
@@ -55,7 +73,15 @@ namespace PolyalphaCipher
             {
                 Console.WriteLine("Enter the path of the text file you wish to decrypt:");
                 file = Console.ReadLine();
-                cipherText = System.IO.File.ReadAllText(file).ToLower();
+                try
+                {
+                    cipherText = System.IO.File.ReadAllText(file).ToLower();
+                }
+                catch
+                {
+                    Console.WriteLine("Not a valid file.");
+                    return;
+                }
                 plainText = Decrypt(cipherText, M2, 1);
                 Console.WriteLine("PlainText: " + plainText);
                 System.IO.File.WriteAllTextAsync("plainTextOut.txt", plainText);
